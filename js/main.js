@@ -40,6 +40,44 @@ function CountDownToMario(endTime, divId) {
 
   /* STEP 2: Declare any variables you’ll need here
             (e.g. interval id). */
+  const now = new Date();  
+// this gets current date
+  const diff = end - now; 
+// this gets the difference
+console.log(diff); // this logs the difference in milliseconds
+console.log(end); // this logs the end date in milliseconds
+console.log(now); // this logs the current date in milliseconds 
+
+let msec = diff;
+
+function showRemaining() {
+    if (diff < 0) {
+        clearInterval(timer); // this clears the interval
+        //console.log("Countdown is over!");
+        document.getElementById(divId).textContent = "Switch 2 is out!";
+    
+    }  else {
+    //console.log("Countdown is still running!");
+        const now = new Date();  
+    // this gets current date
+        const diff = end - now;
+        const diffDay = Math.floor(diff / _day);
+        const diffHour = Math.floor((diff % _day) / _hour); // Use % for remainders
+        const diffMinute = Math.floor((diff % _hour) / _minute);
+        const diffSeconds = Math.floor((diff % _minute) / _second);
+
+     document.getElementById(divId).textContent =
+            diffDay + " Days: " +
+            diffHour.toString().padStart(2, '0') + " Hours : " +  // Added padding
+            diffMinute.toString().padStart(2, '0') + " Minutes: " +
+            diffSeconds.toString().padStart(2, '0') + " Seconds";
+    }
+    
+}
+
+showRemaining();
+const timer = setInterval(showRemaining, 1000);
+
 
   /* STEP 3: Write an inner `showRemaining()` function:
        • get current time (`new Date()`)
@@ -49,6 +87,8 @@ function CountDownToMario(endTime, divId) {
        • pad units to two digits (see hints below)
        • update `document.getElementById(divId).textContent`
   */
+  
+      
 
   /* STEP 4: Call `showRemaining()` once so the timer
             appears immediately. */
@@ -76,4 +116,4 @@ function CountDownToMario(endTime, divId) {
 /* ======================================================
    🎉  BONUS  — optional extras
    ------------------------------------------------------
-   • Add a confetti explosion (see confetti.js) - Check js in 
+   • Add a confetti explosion (see confetti.js) - Check js in */
